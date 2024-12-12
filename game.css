@@ -1,0 +1,288 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "Arial", sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  color: #234709;
+}
+
+#player-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+}
+
+#player-setup label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+#player-name, #difficulty {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#start-game {
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #234709;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+  display: block; 
+  margin: 15px auto;
+}
+
+#start-game:hover {
+  background-color: #1a3406;
+}
+
+#game-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+  overflow: visible; 
+  height: auto;
+}
+
+#player-display {
+  font-size: 20px;
+  font-weight: bold;
+  color: #234709;
+  text-align: center; 
+  margin-bottom: 10px; 
+}
+
+#moves-container {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center; 
+  margin-bottom: 20px; 
+}
+
+.memory-game {
+  display: grid;
+  justify-content: center;
+  gap: 10px; 
+  width: 90%;
+  max-width: 640px;
+  margin: auto;
+
+}
+
+
+#game-section[data-difficulty="Lengvas"] .memory-game {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr); 
+}
+
+
+#game-section[data-difficulty="Vidutinis"] .memory-game {
+  grid-template-columns: repeat(5, 1fr); 
+  grid-template-rows: repeat(4, 1fr); 
+}
+
+
+#game-section[data-difficulty="Sunkus"] .memory-game {
+  grid-template-columns: repeat(6, 1fr); 
+  grid-template-rows: repeat(5, 1fr); 
+}
+
+.memory-card {
+  background: white;
+  aspect-ratio: 1 / 1.3;
+  margin: 0;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 8px;
+  background: #234709;
+  backface-visibility: hidden;
+}
+
+.front-face {
+  transform: rotateY(180deg);
+}
+
+#leaderboard-section {
+  margin-top: 20px;
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+#leaderboard-section h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+#leaderboard {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#leaderboard li {
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+#play-again {
+  display: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  background-color: #234709;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 20px auto;
+  transition: background-color 0.3s;
+  display: block;
+}
+
+#play-again:hover {
+  background-color: #1a3406;
+}
+
+
+@media (max-width: 768px) {
+  #game-section[data-difficulty="Lengvas"] .memory-game {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  #game-section[data-difficulty="Vidutinis"] .memory-game {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  #game-section[data-difficulty="Sunkus"] .memory-game {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+
+  .memory-card {
+    aspect-ratio: 1 / 1.2; 
+    margin: 2px; 
+  }
+
+  #player-setup {
+    padding: 10px;
+    margin: 10px auto;
+    max-width: 300px;
+  }
+
+  #player-display {
+    font-size: 16px; 
+    margin-bottom: 5px; 
+  }
+
+  #moves-container {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  #leaderboard-section {
+    max-width: 300px;
+    padding: 15px;
+  }
+
+
+  @media (max-width: 576px) {
+    #game-section[data-difficulty="Lengvas"] .memory-game {
+      grid-template-columns: repeat(2, 1fr); 
+      grid-template-rows: repeat(6, 1fr);   
+    }
+  
+    #game-section[data-difficulty="Vidutinis"] .memory-game {
+      grid-template-columns: repeat(3, 1fr); 
+      grid-template-rows: repeat(6, 1fr);  
+    }
+  
+    #game-section[data-difficulty="Sunkus"] .memory-game {
+      grid-template-columns: repeat(4, 1fr); 
+      grid-template-rows: repeat(8, 1fr);   
+    }
+  
+    .memory-card {
+      aspect-ratio: 1 / 1.2; 
+      margin: 1px; 
+    }
+  
+    #player-setup {
+      padding: 8px; 
+      margin: 5px auto;
+      max-width: 250px; 
+    }
+  
+    #player-setup label {
+      font-size: 14px;
+    }
+  
+    #player-display {
+      font-size: 14px; 
+      margin-bottom: 5px; 
+    }
+  
+  
+    #leaderboard-section {
+      max-width: 250px; 
+      padding: 10px;    
+    }
+  
+  }
+
+}
+
+

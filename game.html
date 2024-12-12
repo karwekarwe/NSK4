@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Memory Game</title>
+
+  <link rel="stylesheet" href="game.css">
+</head>
+
+
+<body>
+  <section id="player-setup">
+    <h1>Atminties lavinimo žaidimas</h1>
+    <label for="player-name">Įveskite vardą:</label>
+    <input type="text" id="player-name" placeholder="Vardas" />
+
+    <label for="difficulty">Pasirinkite sunkumo lygį:</label>
+  <select id="difficulty">
+    <option value="Lengvas">Lengvas (6 poros)</option>
+    <option value="Vidutinis">Vidutinis (10 poros)</option>
+    <option value="Sunkus">Sunkus (15 poros)</option>
+  </select>
+
+    <button id="start-game">Pradėti</button>
+  </section>
+  
+  <section id="game-section" style="display: block;">
+    <h2 id="player-display"></h2>
+    <p id="moves-container" style="display: none;">Ėjimai: <span id="move-counter">0</span></p>
+    <div class="memory-game" id="memory-game">
+    <!-- Cards will be dynamically generated -->
+    </div>    
+    <button id="play-again">Grįžti</button>
+
+  </section>
+
+  <section id="leaderboard-section" style="display: none;">
+    <h3>Top 3 žaidėjai</h3>
+    <ol id="leaderboard">
+      <li>Nėra įrašų</li>
+    </ol>
+  </section>
+  
+
+  <script src="game.js"></script>
+</body>
+</html>
+
+
