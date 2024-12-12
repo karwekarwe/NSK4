@@ -5,12 +5,12 @@ let firstCard, secondCard;
 let playerName = "";
 let moves = 0;
 let gameStartTime;
-let difficulty = "Lengvas"; // Default difficulty is "easy"
+let difficulty = "Lengvas"; 
 
 const cardData = {
-  Lengvas: 6,    // 6 pairs for easy
-  Vidutinis: 10, // 10 pairs for medium
-  Sunkus: 15,   // 15 pairs for hard
+  Lengvas: 6,    
+  Vidutinis: 10, 
+  Sunkus: 15,   
 };
 
 const moveCounter = document.getElementById("move-counter");
@@ -25,40 +25,32 @@ document.getElementById("start-game").addEventListener("click", () => {
   playerName = nameInput.value.trim();
   difficulty = document.getElementById("difficulty").value;
 
-  // Update the player display
   document.getElementById("player-display").textContent = `Žaidėjas: ${playerName} | Sudėtingumo lygis: ${difficulty}`;
   document.getElementById("moves-container").style.display = "block";
 
-  // Set the difficulty on the game section for CSS grid
   document.getElementById("game-section").setAttribute("data-difficulty", difficulty);
 
-  // Generate the cards based on difficulty
   generateCards(cardData[difficulty]);
 
   document.getElementById("player-setup").style.display = "none";
   document.getElementById("game-section").style.display = "block";
-  document.getElementById("leaderboard-section").style.display = "block"; // Ensure leaderboard is visible in game section
+  document.getElementById("leaderboard-section").style.display = "block"; 
 
-  // Reset leaderboard display for the chosen difficulty
   displayTopScores(difficulty);
 });
 
 function generateCards(pairs) {
   const memoryGame = document.getElementById("memory-game");
-  memoryGame.innerHTML = ""; // Clear existing cards
+  memoryGame.innerHTML = ""; 
 
-  // Array of possible card themes
   const frameworks = ["ate", "cat", "cheek", "dantis", "kareivux", "liux", "melagis", "omnomnom", "piktc", "ranka", "roze", "sirdute", "uwu", "zvaigzde", "beisbol"];
 
-  // Select only as many frameworks as needed for the number of pairs
   const selectedFrameworks = frameworks.slice(0, pairs);
 
-  // Create pairs and shuffle them
   const cardsArray = selectedFrameworks
-    .concat(selectedFrameworks) // Create pairs by duplicating the array
-    .sort(() => Math.random() - 0.5); // Shuffle the cards
+    .concat(selectedFrameworks) 
+    .sort(() => Math.random() - 0.5); 
 
-  // Generate the cards in the grid
   cardsArray.forEach((framework) => {
     const card = document.createElement("div");
     card.classList.add("memory-card");
@@ -72,7 +64,7 @@ function generateCards(pairs) {
     memoryGame.appendChild(card);
   });
 
-  // Bind event listeners to new cards
+
   const cards = document.querySelectorAll(".memory-card");
   cards.forEach((card) => card.addEventListener("click", flipCard));
 }
@@ -159,19 +151,14 @@ function getTopScores(difficulty) {
 function updateTopScores(playerName, moves, time) {
   let topScores = getTopScores(difficulty);
 
-  // Add the new score
   topScores.push({ name: playerName, moves, time });
 
-  // Sort by the best score (fewest moves and shortest time)
   topScores.sort((a, b) => a.moves - b.moves || a.time - b.time);
 
-  // Keep only the top 3 scores
   topScores = topScores.slice(0, 3);
 
-  // Save back to sessionStorage
   sessionStorage.setItem(`topScores-${difficulty}`, JSON.stringify(topScores));
 
-  // Update the leaderboard display
   displayTopScores(difficulty);
 }
 
@@ -197,9 +184,9 @@ function resetGame() {
   moveCounter.textContent = moves;
 
   const memoryGame = document.getElementById("memory-game");
-  memoryGame.innerHTML = ""; // Clear the cards
+  memoryGame.innerHTML = ""; 
 
-  // Regenerate the cards for the chosen difficulty
+
   generateCards(cardData[difficulty]);
 }
 
